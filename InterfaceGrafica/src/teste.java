@@ -6,16 +6,14 @@ public class teste {
 
         CarrinhoDeCompras c1 = new CarrinhoDeCompras();
 
-        c1.adicionaProduto(p1);
-        c1.adicionaProduto(p2);
-        c1.adicionaProduto(p3);
+        c1.adicionaProduto(p1,2);
+        c1.adicionaProduto(p2,1);
+        c1.adicionaProduto(p3,1);
 
 
-        Venda v1 = new Venda(c1, Venda.tipoVenda.CREDITO);
+        Venda v1 = new Venda(c1, Venda.tipoVenda.CRÉDITO);
 
         v1.imprimeVenda();
-
-
 
 
     }

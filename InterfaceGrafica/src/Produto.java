@@ -7,15 +7,26 @@ public class Produto {
     private double preco;
     private int quantidadeEstoque;
 
+
     public Produto(String nomeProduto, double preco,int quantidadeEstoque){
         setNomeProduto(nomeProduto);
         setPreco(preco);
         setQuantidadeEstoque(quantidadeEstoque);
-        this.id = UUID.randomUUID().toString();
+        setId();
     }
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
+    }
+
+    public void setId() {
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public int verificaEstoque(int qtdComprada){
+        if(this.getQuantidadeEstoque() > qtdComprada)
+            return 1;
+        else return 0;
     }
 
     public void setPreco(double preco) {
@@ -33,6 +44,7 @@ public class Produto {
     public double getPreco() {
         return preco;
     }
+
 
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
