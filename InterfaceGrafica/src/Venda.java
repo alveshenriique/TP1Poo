@@ -39,6 +39,9 @@ public class Venda {
         this.listaProdutos = listaProdutos;
     }
 
+    public tipoVenda getTipo(){
+        return tipoVenda;
+    }
     public static Venda.tipoVenda getTipoVenda() {
         return tipoVenda;
     }

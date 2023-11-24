@@ -13,7 +13,8 @@ public class teste {
 
         Venda v1 = new Venda(c1, Venda.tipoVenda.CRÉDITO);
 
-        v1.imprimeVenda();
+        NotaFiscal nf1 = new NotaFiscal(v1);
+        nf1.imprimeNotaFiscal();
 
 
     }
