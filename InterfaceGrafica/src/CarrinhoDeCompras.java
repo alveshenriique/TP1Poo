@@ -60,15 +60,25 @@ public class CarrinhoDeCompras {
         this.qtdItens = qtdItens;
     }
 
-    public void listarProdutos(){
-        int i;
-        for (i = 0 ; i < quantidadeComprada.size() ; i++){
-            System.out.println("Nome: " + this.listaProdutos.get(i).getNomeProduto());
-            System.out.println("Preco: " + this.listaProdutos.get(i).getPreco());
-            System.out.println("Quantidade comprada: " + this.quantidadeComprada.get(i));
-            System.out.println(" ");
+    public void listarProdutos() {
+        StringBuilder resultado = new StringBuilder();
+
+        resultado.append(String.format("%-5s %-10s %-30s %-10s %-15s %-15s%n", "Índice", "ID", "Nome do Produto", "Quantidade", "Vlr.Unit.", "Total"));
+
+        int i = 0;
+        for (Produto produto : this.listaProdutos) {
+            double precoUnitario = produto.getPreco();
+            int quantidade = this.quantidadeComprada.get(i);
+            double total = precoUnitario * quantidade;
+
+            resultado.append(String.format("%-5s %-10s %-30s %-10s %-15.2f %-15.2f%n", i, produto.getId(), produto.getNomeProduto(),
+                    quantidade, precoUnitario, total));
+            i++;
         }
+
+        System.out.println(resultado.toString());
     }
+
     public void gerarPrecoTotal(){
         double precoTotal = 0;
         int i;

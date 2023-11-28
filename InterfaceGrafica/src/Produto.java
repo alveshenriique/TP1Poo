@@ -1,8 +1,11 @@
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.UUID;
 public class Produto {
     private String nomeProduto;
     private String id;
+
+    private static int proximoId = 100000000; // Inicia com o valor mínimo
 
     private double preco;
     private int quantidadeEstoque;
@@ -19,8 +22,21 @@ public class Produto {
         this.nomeProduto = nomeProduto;
     }
 
+    private static String gerarCodigoSupermercado() {
+
+        Random random = new Random();
+
+        // Gera um número aleatório entre 100000000 e 999999999
+        int numeroAleatorio = proximoId + random.nextInt(900000000);
+
+        // Incrementa o próximo ID
+        proximoId++;
+
+        return String.valueOf(numeroAleatorio);
+    }
+
     public void setId() {
-        this.id = UUID.randomUUID().toString();
+        this.id = gerarCodigoSupermercado();
     }
 
     public int verificaEstoque(int qtdComprada){
