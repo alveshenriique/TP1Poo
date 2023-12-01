@@ -23,7 +23,24 @@ public class CarrinhoDeCompras {
             qtdItens += qtdComprada;
             return 1;
         }
+    }
 
+    public int adicionaProdutoPeloNome(String nomeProduto, int qtdComprada, ArrayList<Produto> produtos) {
+        for (Produto produto : produtos) {
+            if (produto.getNomeProduto().equalsIgnoreCase(nomeProduto)) {
+                if (produto.verificaEstoque(qtdComprada) == 0) {
+                    System.out.println("[ERRO] Não foi possível inserir o item " + produto.getNomeProduto() + " pois restam apenas " + produto.getQuantidadeEstoque() + " unidades!");
+                    return 0;
+                } else {
+                    quantidadeComprada.add(qtdComprada);
+                    this.listaProdutos.add(produto);
+                    qtdItens += qtdComprada;
+                    return 1;
+                }
+            }
+        }
+        System.out.println("[ERRO] Produto não encontrado.");
+        return -1;
     }
     public void removeProduto(String nomeProdutoRemover){
         listaProdutos.removeIf(Produto -> Objects.equals(Produto.getNomeProduto(), nomeProdutoRemover));
@@ -90,6 +107,12 @@ public class CarrinhoDeCompras {
         }
         this.precoTotal = precoTotal;
     }
-
-
+    public Produto procuraProdutoCarrinho(String nome){
+        int i;
+        for (i = 0 ; i < this.listaProdutos.size() ; i++){
+            if (this.getListaProdutos().get(i).procuraProdutoNome(nome) == 1)
+                return this.listaProdutos.get(i);
+        }
+        return null;
+    }
 }

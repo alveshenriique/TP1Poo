@@ -1,6 +1,5 @@
 import java.time.LocalDateTime;
 import java.util.Random;
-import java.util.UUID;
 public class Produto {
     private String nomeProduto;
     private String id;
@@ -76,4 +75,9 @@ public class Produto {
         this.quantidadeEstoque = quantidadeEstoque + qtdAdd;
     }
 
+    public int procuraProdutoNome(String nome){
+        if (this.getNomeProduto() == nome)
+            return 1;
+        else return 0;
+    }
 }

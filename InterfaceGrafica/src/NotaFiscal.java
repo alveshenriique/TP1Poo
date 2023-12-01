@@ -10,29 +10,34 @@ public class NotaFiscal {
     }
 
     public void imprimeNotaFiscal() {
-        System.out.println("---------------------------------------------------------------------------------");
-        System.out.println("                                 SUPERMERCADO POO                                ");
-        System.out.println("---------------------------------------------------------------------------------");
-        System.out.println("\n");
-        System.out.println("--------------------------------- Itens Comprados -------------------------------");
-
+       this.cabecalhoCF();
         venda.getListaProdutos().listarProdutos();
-
-        System.out.println("---------------------------------------------------------------------------------");
-
-        String totalFormatado = String.format("Total a pagar: R$%63.2f", this.venda.getListaProdutos().getPrecoTotal());
-        System.out.println(totalFormatado);
-
-        System.out.printf("%-25s %54s%n", "Data da compra:", this.venda.getDataHora());
-        System.out.printf("%-25s %54s%n", "Forma de pagamento:", this.venda.getTipo());
-        System.out.printf("%-25s %54s%n", "Quantidade de Itens:", this.venda.getListaProdutos().getQtdItens());
-
-        System.out.println("--------------------------------------------------------------------------------");
+        this.footer();
     }
 
     // Possibilidade
     private void escreverNotaFiscalEmArquivo() {
 
     }
+    public void cabecalhoCF(){
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("SUPERMERCADO POO COMERCIO E INDUSTRIA LTDA");
+        System.out.println("FLORESTAL - MINAS GERAIS");
+        System.out.println("CNPJ: 77.777.777/0001-77");
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println(this.venda.getDataHora());
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("                                   CUPOM FISCAL          ");
+        System.out.println("---------------------------------------------------------------------------------");
 
+    }
+    public void footer(){
+        System.out.println("---------------------------------------------------------------------------------");
+        String totalFormatado = String.format("Total a pagar: R$%63.2f", this.venda.getListaProdutos().getPrecoTotal());
+        System.out.println(totalFormatado);
+        System.out.printf("%-25s %54s%n", "Data da compra:", this.venda.getDataHora());
+        System.out.printf("%-25s %54s%n", "Forma de pagamento:", this.venda.getTipo());
+        System.out.printf("%-25s %54s%n", "Quantidade de Itens:", this.venda.getListaProdutos().getQtdItens());
+        System.out.println("--------------------------------------------------------------------------------");
+    }
 }
