@@ -25,8 +25,8 @@ public class CarrinhoDeCompras {
         }
     }
 
-    public int adicionaProdutoPeloNome(String nomeProduto, int qtdComprada, ArrayList<Produto> produtos) {
-        for (Produto produto : produtos) {
+    public int adicionaProdutoPeloNome(String nomeProduto, int qtdComprada, Catalogo produtos) {
+        for (Produto produto : produtos.produtossDisponiveis) {
             if (produto.getNomeProduto().equalsIgnoreCase(nomeProduto)) {
                 if (produto.verificaEstoque(qtdComprada) == 0) {
                     System.out.println("[ERRO] Não foi possível inserir o item " + produto.getNomeProduto() + " pois restam apenas " + produto.getQuantidadeEstoque() + " unidades!");
@@ -42,6 +42,7 @@ public class CarrinhoDeCompras {
         System.out.println("[ERRO] Produto não encontrado.");
         return -1;
     }
+
     public void removeProduto(String nomeProdutoRemover){
         listaProdutos.removeIf(Produto -> Objects.equals(Produto.getNomeProduto(), nomeProdutoRemover));
     }

@@ -80,4 +80,12 @@ public class Produto {
             return 1;
         else return 0;
     }
+
+    public void imprimeProduto(){
+        System.out.println("Nome: " + this.getNomeProduto());
+        System.out.println("Preço: R$" + this.getPreco());
+        System.out.println("Quantidade estoque: " + this.getQuantidadeEstoque() + " unidades");
+        System.out.println(" ");
+        System.out.println(" ");
+    }
 }

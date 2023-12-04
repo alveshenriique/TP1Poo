@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 public class HistoricoVendas {
 
-    private ArrayList<Venda> listaVendas;
+    private ArrayList<Venda>listaVendas;
     private String dataHoraHistorico;
 
     public HistoricoVendas() {
@@ -34,11 +34,11 @@ public class HistoricoVendas {
     }
 
     public void listarVendas() {
-        System.out.println("----------------------Histórico de Vendas----------------------");
+        System.out.println("------------------------------HISTÓRICO DE VENDAS-------------------------------");
         try {
             if (!listaVendas.isEmpty()) {
                 for (Venda venda : listaVendas) {
-                    System.out.println("---------------------------------------------------");
+                    System.out.println("--------------------------------------------------------------------");
                     venda.imprimeVenda();
                 }
             } else {
@@ -49,7 +49,7 @@ public class HistoricoVendas {
         } catch (Exception e) {
             System.err.println("Erro ao listar vendas: " + e.getMessage());
         } finally {
-            System.out.println("-----------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------");
         }
     }
 

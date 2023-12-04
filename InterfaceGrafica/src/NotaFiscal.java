@@ -21,7 +21,7 @@ public class NotaFiscal {
     }
     public void cabecalhoCF(){
         System.out.println("---------------------------------------------------------------------------------");
-        System.out.println("SUPERMERCADO POO COMERCIO E INDUSTRIA LTDA");
+        System.out.println("SUPERMERCADO DAMASCO COMERCIO E INDUSTRIA LTDA");
         System.out.println("FLORESTAL - MINAS GERAIS");
         System.out.println("CNPJ: 77.777.777/0001-77");
         System.out.println("---------------------------------------------------------------------------------");
