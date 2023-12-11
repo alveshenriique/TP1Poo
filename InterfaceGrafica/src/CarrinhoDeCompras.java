@@ -43,9 +43,27 @@ public class CarrinhoDeCompras {
         return -1;
     }
 
-    public void removeProduto(String nomeProdutoRemover){
-        listaProdutos.removeIf(Produto -> Objects.equals(Produto.getNomeProduto(), nomeProdutoRemover));
+    public int removeProdutoPeloNome(String nomeProduto, int qtdRemover) {
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            Produto produto = listaProdutos.get(i);
+            if (produto.getNomeProduto().equalsIgnoreCase(nomeProduto)) {
+                int qtdAtual = quantidadeComprada.get(i);
+                if (qtdAtual >= qtdRemover) {
+                    quantidadeComprada.set(i, qtdAtual - qtdRemover);
+                    qtdItens -= qtdRemover;
+                    if (quantidadeComprada.get(i) == 0) {
+                        listaProdutos.remove(i);
+                        quantidadeComprada.remove(i);
+                    }
+                    return 1; // Produto removido com sucesso
+                } else {
+                    return -1; // Quantidade a ser removida é maior que a quantidade no carrinho
+                }
+            }
+        }
+        return 0; // Produto não encontrado no carrinho
     }
+    
 
     public ArrayList<Produto> getListaProdutos() {
         return listaProdutos;
