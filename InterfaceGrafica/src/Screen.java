@@ -108,6 +108,19 @@ public class Screen extends JFrame{
         JLabel labelQuantidadeRemover = new JLabel("Quantidade:");
         labelQuantidadeRemover.setBounds(125, 300, 100, 30);
         add(labelQuantidadeRemover);
+
+        JButton jButtonConcluirVenda = new JButton("Concluir Venda");
+        jButtonConcluirVenda.setBounds(300, 350, 250, 30);
+        jButtonConcluirVenda.setFont(new Font("Arial", Font.BOLD, 15));
+        jButtonConcluirVenda.setForeground(new Color(50, 50, 50));
+        jButtonConcluirVenda.setBackground(new Color(200, 200, 200));
+        jButtonConcluirVenda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                concluirVenda();
+            }
+        });
+        add(jButtonConcluirVenda);
     }
 
     public static void main(String[] args) {
@@ -207,5 +220,18 @@ public class Screen extends JFrame{
         }
         return null;
     }
-}
 
+    private void concluirVenda() {
+        if (carrinho != null) {
+            Venda.tipoVenda tipo = Venda.tipoVenda.DINHEIRO; 
+            Venda venda = new Venda(carrinho, tipo);
+
+            NotaFiscal notaFiscal = new NotaFiscal(venda);
+            notaFiscal.imprimeNotaFiscal();
+            notaFiscal.escreverNotaFiscalEmArquivo();
+        } else {
+            JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
+        }
+    }
+    
+}
