@@ -14,6 +14,7 @@ public class CarrinhoDeCompras {
         this.quantidadeComprada = new ArrayList<>();
     }
     public int adicionaProduto(Produto produto, int qtdComprada){
+        
         if (produto.verificaEstoque(qtdComprada) == 0){
             System.out.println("[ERRO] Não foi possível inserir o item " + produto.getNomeProduto() + " pois restam apenas " + produto.getQuantidadeEstoque() + " unidades!");
             return 0;
@@ -43,28 +44,36 @@ public class CarrinhoDeCompras {
         return -1;
     }
 
-    public int removeProdutoPeloNome(String nomeProduto, int quantidadeRemover) {
+    public int removeProdutoPeloNome(String nomeProduto, int qtdRemover) {
+
         for (int i = 0; i < listaProdutos.size(); i++) {
+
             Produto produto = listaProdutos.get(i);
+
             if (produto.getNomeProduto().equalsIgnoreCase(nomeProduto)) {
-                int quantidadeAtual = quantidadeComprada.get(i);
-                if (quantidadeRemover <= quantidadeAtual) {
-                    quantidadeComprada.set(i, quantidadeAtual - quantidadeRemover);
-                    qtdItens -= quantidadeRemover;
-                    if (quantidadeAtual - quantidadeRemover == 0) {
+                
+                int qtdAtual = quantidadeComprada.get(i);
+
+
+                if (qtdAtual >= qtdRemover) {
+
+                    quantidadeComprada.set(i, qtdAtual - qtdRemover);
+                    
+                    qtdItens -= qtdRemover;
+                    if (quantidadeComprada.get(i) == 0) {
+
                         listaProdutos.remove(i);
                         quantidadeComprada.remove(i);
                     }
-                    return 1;
+                    produto.adicionarEstoque(qtdRemover); // Restaura a quantidade do estoque
+                    return 1; // Produto removido com sucesso
                 } else {
-                    return -1;
+                    return -1; // Quantidade a ser removida é maior que a quantidade no carrinho
                 }
             }
         }
-        return 0;
+        return 0; // Produto não encontrado no carrinho
     }
-    
-    
     
 
     public ArrayList<Produto> getListaProdutos() {
