@@ -7,6 +7,7 @@ public class Screen extends JFrame{
     private CarrinhoDeCompras carrinho;
     private Catalogo catalogo;
     private JTextField textFieldNomeProduto;
+    private JTextField textFieldNomeProdutoRemover;
     private JTextField textFieldQuantidade;
     private JTextField textFieldQuantidadeRemover;
 
@@ -101,7 +102,7 @@ public class Screen extends JFrame{
         add(textFieldQuantidade);
 
         //nome para remover
-        JTextField textFieldNomeProdutoRemover = new JTextField();
+        textFieldNomeProdutoRemover = new JTextField();
         textFieldNomeProdutoRemover.setBounds(200, 260, 350, 30);
         add(textFieldNomeProdutoRemover);
         //quantidade para remover
@@ -204,7 +205,7 @@ public class Screen extends JFrame{
 private void removerProdutoDoCarrinho() {
     if (carrinho != null) {
         
-        String nomeProduto = textFieldNomeProduto.getText();
+        String nomeProduto = textFieldNomeProdutoRemover.getText();
         int quantidadeRemover = Integer.parseInt(textFieldQuantidadeRemover.getText());
 
         int resultado = carrinho.removeProdutoPeloNome(nomeProduto, quantidadeRemover);
