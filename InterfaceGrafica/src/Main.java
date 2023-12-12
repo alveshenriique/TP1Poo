@@ -1,7 +1,11 @@
+import javax.swing.SwingUtilities;
+
 public class Main {
     public static void main(String[] args){
         Catalogo catalogo = new Catalogo();
 
-        new Screen();
+        SwingUtilities.invokeLater(() -> {
+            new Screen();
+        });
     }
 }

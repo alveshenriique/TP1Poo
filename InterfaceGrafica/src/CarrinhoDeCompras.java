@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CarrinhoDeCompras {
+    
     private ArrayList<Produto> listaProdutos;
     private double precoTotal;
 
