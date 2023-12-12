@@ -24,12 +24,19 @@ public class NotaFiscal {
 
     // Possibilidade
     public void escreverNotaFiscalEmArquivo() {
+
         LocalDateTime agora = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
         String formatoDataHora = agora.format(formatter);
+
+        // Obtém o caminho absoluto do diretório onde o JAR está localizado
+        String diretorioAtual = System.getProperty("user.dir");
+
+        // Gera o nome do arquivo com o caminho absoluto
+        String nomeArquivo = diretorioAtual + "/NotaFiscal_" + formatoDataHora + ".txt";
     
         // Gera o nome do arquivo
-        String nomeArquivo = "NotaFiscal_" + formatoDataHora + ".txt";
+        nomeArquivo = "NotaFiscal_" + formatoDataHora + ".txt";
     
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
             // Escreve as informações da nota fiscal no arquivo
