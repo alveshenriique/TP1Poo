@@ -111,6 +111,7 @@ public class Screen extends JFrame{
         labelQuantidadeRemover.setBounds(85, 270, 100, 30);
         add(labelQuantidadeRemover);
 
+        //Botão concluir venda
         JButton jButtonConcluirVenda = new JButton("Concluir Venda");
         jButtonConcluirVenda.setBounds(175, 310, 250, 30);
         jButtonConcluirVenda.setFont(new Font("Arial", Font.BOLD, 15));
@@ -167,7 +168,7 @@ public class Screen extends JFrame{
         listaProdutosFrame.setLocationRelativeTo(null);
     }
     
-    
+    //Adição de produtos pelo nome e quantidade
     private void adicionarProdutoAoCarrinho() {
         if (carrinho != null) {
             String nomeProduto = textFieldNomeProduto.getText();
@@ -175,7 +176,7 @@ public class Screen extends JFrame{
 
             if (produtoEncontrado != null) {
                 try {
-                    int quantidadeDesejada = Integer.parseInt(textFieldQuantidade.getText()); // Obtenha o valor do JTextField
+                    int quantidadeDesejada = Integer.parseInt(textFieldQuantidade.getText()); 
                     int resultado = carrinho.adicionaProduto(produtoEncontrado, quantidadeDesejada);
 
                     if (resultado == 1) {
