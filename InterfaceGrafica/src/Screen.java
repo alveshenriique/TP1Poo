@@ -175,31 +175,35 @@ public class Screen extends JFrame{
     
     
     private void adicionarProdutoAoCarrinho() {
-    if (carrinho != null) {
-        String nomeProduto = textFieldNomeProduto.getText();
-        Produto produtoEncontrado = encontrarProdutoNoCatalogo(nomeProduto);
+        if (carrinho != null) {
+            String nomeProduto = textFieldNomeProduto.getText();
+            Produto produtoEncontrado = encontrarProdutoNoCatalogo(nomeProduto);
 
-        if (produtoEncontrado != null) {
-            try {
-                int quantidadeDesejada = Integer.parseInt(textFieldQuantidade.getText()); // Obtenha o valor do JTextField
-                int resultado = carrinho.adicionaProduto(produtoEncontrado, quantidadeDesejada);
+            if (produtoEncontrado != null) {
+                try {
+                    int quantidadeDesejada = Integer.parseInt(textFieldQuantidade.getText()); // Obtenha o valor do JTextField
+                    int resultado = carrinho.adicionaProduto(produtoEncontrado, quantidadeDesejada);
 
-                if (resultado == 1) {
-                    JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho!");
-                    produtoEncontrado.removeEstoque(quantidadeDesejada);
-                } else {
-                    JOptionPane.showMessageDialog(this, "[ERRO] Não foi possível adicionar o produto ao carrinho. Verifique o estoque!");
+                    if (resultado == 1) {
+                        JOptionPane.showMessageDialog(this, "Produto adicionado ao carrinho!");
+                        produtoEncontrado.removeEstoque(quantidadeDesejada);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "[ERRO] Não foi possível adicionar o produto ao carrinho. Verifique o estoque!");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Digite uma quantidade válida!");
                 }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Digite uma quantidade válida!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Produto não encontrado no catálogo!");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Produto não encontrado no catálogo!");
+            JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
+
+        // Limpar o texto dos JTextFields após adicionar o produto ao carrinho
+        textFieldNomeProduto.setText("");
+        textFieldQuantidade.setText("");
     }
-}
 
 // Método para remover um produto do carrinho pelo nome e quantidade
 private void removerProdutoDoCarrinho() {
@@ -220,6 +224,9 @@ private void removerProdutoDoCarrinho() {
     } else {
         JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
     }
+    // Limpar o texto dos JTextFields após adicionar o produto ao carrinho
+        textFieldNomeProdutoRemover.setText("");
+        textFieldQuantidadeRemover.setText("");
 }
 
     
