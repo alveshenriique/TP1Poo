@@ -65,14 +65,14 @@ public class CarrinhoDeCompras {
                         listaProdutos.remove(i);
                         quantidadeComprada.remove(i);
                     }
-                    produto.adicionarEstoque(qtdRemover); // Restaura a quantidade do estoque
-                    return 1; // Produto removido com sucesso
+                    produto.adicionarEstoque(qtdRemover);
+                    return 1; // Produto removido
                 } else {
-                    return -1; // Quantidade a ser removida é maior que a quantidade no carrinho
+                    return -1; // Quantidade removida > quantidade no carrinho
                 }
             }
         }
-        return 0; // Produto não encontrado no carrinho
+        return 0; // Produto não encontrado
     }
     
 

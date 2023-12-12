@@ -23,36 +23,17 @@ public class Screen extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
-        /*//Botões
-        JButton jButtonAdicionar = new JButton();
-        jButtonAdicionar.setText("Adicionar");
-        jButtonAdicionar.setBounds(200,290,150,70);
-        jButtonAdicionar.setFont(new Font("Arial", Font.BOLD, 25));
-        jButtonAdicionar.setForeground(new Color(4, 187, 20));
-        jButtonAdicionar.setBackground(new Color(10, 9, 9));
 
-        JButton jButtonRemover = new JButton();
-        jButtonRemover.setText("Remover");
-        jButtonRemover.setBounds(400,290,150,70);
-        jButtonRemover.setFont(new Font("Arial", Font.BOLD, 25));
-        jButtonRemover.setForeground(new Color(182, 4, 4));
-        jButtonRemover.setBackground(new Color(5, 5, 5));
-
-
-        add(jButtonAdicionar);
-        add(jButtonRemover);
-        */
-        
        // Título
         JLabel jLabel = new JLabel("Carrinho de Compras");
-        jLabel.setBounds(180, 10, 400, 50);
+        jLabel.setBounds(115, 10, 400, 50);
         jLabel.setFont(new Font("Arial", Font.BOLD, 35));
         add(jLabel);
 
         // Botão "Mostrar Lista de Produtos"
         JButton jButtonMostrarLista = new JButton();
         jButtonMostrarLista.setText("Mostrar Lista de Produtos");
-        jButtonMostrarLista.setBounds(200, 90, 350, 70);
+        jButtonMostrarLista.setBounds(120, 70, 350, 70);
         jButtonMostrarLista.setFont(new Font("Arial", Font.BOLD, 25));
         jButtonMostrarLista.setForeground(new Color(50, 50, 50));
         jButtonMostrarLista.setBackground(new Color(200, 200, 200));
@@ -66,7 +47,7 @@ public class Screen extends JFrame{
 
         // Botão "Adicionar Produto"
         JButton jButtonAdicionarProduto = new JButton("Adicionar Produto");
-        jButtonAdicionarProduto.setBounds(300, 220, 250, 30);
+        jButtonAdicionarProduto.setBounds(260, 190, 250, 30);
         jButtonAdicionarProduto.setFont(new Font("Arial", Font.BOLD, 15));
         jButtonAdicionarProduto.setForeground(new Color(50, 50, 50));
         jButtonAdicionarProduto.setBackground(new Color(200, 200, 200));
@@ -80,7 +61,7 @@ public class Screen extends JFrame{
 
         // Botão "Remover Produto"
         JButton jButtonRemoverProduto = new JButton("Remover Produto");
-        jButtonRemoverProduto.setBounds(300, 300, 250, 30);
+        jButtonRemoverProduto.setBounds(260, 270, 250, 30);
         jButtonRemoverProduto.setFont(new Font("Arial", Font.BOLD, 15));
         jButtonRemoverProduto.setForeground(new Color(50, 50, 50));
         jButtonRemoverProduto.setBackground(new Color(200, 200, 200));
@@ -94,20 +75,20 @@ public class Screen extends JFrame{
 
         //nome para add
         textFieldNomeProduto = new JTextField();
-        textFieldNomeProduto.setBounds(200, 180, 350, 30);
+        textFieldNomeProduto.setBounds(160, 150, 350, 30);
         add(textFieldNomeProduto);
         //quantidade para add
         textFieldQuantidade = new JTextField();
-        textFieldQuantidade.setBounds(200, 220, 80, 30);
+        textFieldQuantidade.setBounds(160, 190, 80, 30);
         add(textFieldQuantidade);
 
         //nome para remover
         textFieldNomeProdutoRemover = new JTextField();
-        textFieldNomeProdutoRemover.setBounds(200, 260, 350, 30);
+        textFieldNomeProdutoRemover.setBounds(160, 230, 350, 30);
         add(textFieldNomeProdutoRemover);
         //quantidade para remover
         textFieldQuantidadeRemover = new JTextField();
-        textFieldQuantidadeRemover.setBounds(200, 300, 80, 30);
+        textFieldQuantidadeRemover.setBounds(160, 270, 80, 30);
         add(textFieldQuantidadeRemover);
 
         //Parte para escrever nome do produto e quantidade na frase nas caixas de texto
@@ -117,21 +98,21 @@ public class Screen extends JFrame{
         setLocationRelativeTo(null);
         setLayout(null);
         JLabel labelNomeProdutoAdicionar = new JLabel("Nome do Produto:");
-        labelNomeProdutoAdicionar.setBounds(90, 180, 150, 30);
+        labelNomeProdutoAdicionar.setBounds(50, 150, 150, 30);
         add(labelNomeProdutoAdicionar);
         JLabel labelQuantidadeAdicionar = new JLabel("Quantidade:");
-        labelQuantidadeAdicionar.setBounds(125, 220, 100, 30);
+        labelQuantidadeAdicionar.setBounds(85, 190, 100, 30);
         add(labelQuantidadeAdicionar);
 
         JLabel labelNomeProdutoRemover = new JLabel("Nome do Produto:");
-        labelNomeProdutoRemover.setBounds(90, 260, 150, 30);
+        labelNomeProdutoRemover.setBounds(50, 230, 150, 30);
         add(labelNomeProdutoRemover);
         JLabel labelQuantidadeRemover = new JLabel("Quantidade:");
-        labelQuantidadeRemover.setBounds(125, 300, 100, 30);
+        labelQuantidadeRemover.setBounds(85, 270, 100, 30);
         add(labelQuantidadeRemover);
 
         JButton jButtonConcluirVenda = new JButton("Concluir Venda");
-        jButtonConcluirVenda.setBounds(300, 350, 250, 30);
+        jButtonConcluirVenda.setBounds(175, 310, 250, 30);
         jButtonConcluirVenda.setFont(new Font("Arial", Font.BOLD, 15));
         jButtonConcluirVenda.setForeground(new Color(50, 50, 50));
         jButtonConcluirVenda.setBackground(new Color(200, 200, 200));
@@ -218,35 +199,31 @@ public class Screen extends JFrame{
         textFieldQuantidade.setText("");
     }
 
-// Método para remover um produto do carrinho pelo nome e quantidade
-private void removerProdutoDoCarrinho() {
-    if (carrinho != null) {
-        
-        String nomeProduto = textFieldNomeProdutoRemover.getText();
-        int quantidadeRemover = Integer.parseInt(textFieldQuantidadeRemover.getText());
+    //remover produto do carrinho pelo nome e quantidade
+    private void removerProdutoDoCarrinho() {
+        if (carrinho != null) {
+            
+            String nomeProduto = textFieldNomeProdutoRemover.getText();
+            int quantidadeRemover = Integer.parseInt(textFieldQuantidadeRemover.getText());
 
-        int resultado = carrinho.removeProdutoPeloNome(nomeProduto, quantidadeRemover);
+            int resultado = carrinho.removeProdutoPeloNome(nomeProduto, quantidadeRemover);
 
-        if (resultado == 1) {
-            JOptionPane.showMessageDialog(this, "Produto removido do carrinho!");
-        } else if (resultado == 0) {
-            JOptionPane.showMessageDialog(this, "Produto não encontrado no carrinho.");
-        } else if (resultado == -1) {
-            JOptionPane.showMessageDialog(this, "Quantidade a ser removida é maior que a quantidade no carrinho.");
+            if (resultado == 1) {
+                JOptionPane.showMessageDialog(this, "Produto removido do carrinho!");
+            } else if (resultado == 0) {
+                JOptionPane.showMessageDialog(this, "Produto não encontrado no carrinho.");
+            } else if (resultado == -1) {
+                JOptionPane.showMessageDialog(this, "Quantidade a ser removida é maior que a quantidade no carrinho.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
+        // Limpar o texto dos JTextFields após adicionar o produto ao carrinho
+            textFieldNomeProdutoRemover.setText("");
+            textFieldQuantidadeRemover.setText("");
     }
-    // Limpar o texto dos JTextFields após adicionar o produto ao carrinho
-        textFieldNomeProdutoRemover.setText("");
-        textFieldQuantidadeRemover.setText("");
-}
-
-    
 
     private Produto encontrarProdutoNoCatalogo(String nomeProduto) {
-        // Lógica para encontrar o produto no catálogo
-        // Supondo que você tenha uma instância de Catalogo chamada "catalogo"
         for (Produto produto : catalogo.produtossDisponiveis) {
             if (produto.getNomeProduto().equalsIgnoreCase(nomeProduto)) {
                 return produto;
@@ -255,27 +232,27 @@ private void removerProdutoDoCarrinho() {
         return null;
     }
 
-        private void concluirVenda() {
-            Object[] options = {Venda.tipoVenda.DINHEIRO, Venda.tipoVenda.CRÉDITO, Venda.tipoVenda.DÉBITO, Venda.tipoVenda.PIX};
-            Venda.tipoVenda tipo = (Venda.tipoVenda) JOptionPane.showInputDialog(
-                this,
-                "Selecione o tipo de venda:",
-                "Tipo de Venda",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[0]
-            );
-
-            if (tipo != null) {
-                Venda venda = new Venda(carrinho, tipo);
+    private void concluirVenda() {
+        Object[] options = {Venda.tipoVenda.DINHEIRO, Venda.tipoVenda.CRÉDITO, Venda.tipoVenda.DÉBITO, Venda.tipoVenda.PIX};
+        Venda.tipoVenda tipo = (Venda.tipoVenda) JOptionPane.showInputDialog(
+            this,
+            "Selecione o tipo de venda:",
+            "Tipo de Venda",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+    
+        if (tipo != null) {
+            Venda venda = new Venda(carrinho, tipo);
+            NotaFiscal notaFiscal = new NotaFiscal(venda);
             
-                NotaFiscal notaFiscal = new NotaFiscal(venda);
+            //instância de NotaFiscal, métodos para imprimir a nota
+            notaFiscal.imprimeNotaFiscal();
+            notaFiscal.escreverNotaFiscalEmArquivo();
+    
             if (carrinho != null) {
-                // Remove the duplicate declaration of "venda"
-                // Venda venda = new Venda(carrinho, Venda.tipoVenda.DINHEIRO);
-
-                NotaFiscal notafiscal = new NotaFiscal(venda);
                 JFrame vendaFrame = new JFrame("Detalhes da Venda");
                 JTextArea vendaTextArea = new JTextArea();
                 JScrollPane scrollPane = new JScrollPane(vendaTextArea);
@@ -286,17 +263,16 @@ private void removerProdutoDoCarrinho() {
                 for (Produto produto : carrinho.getListaProdutos()) {
                     vendaTextArea.append(produto.getNomeProduto() + " - R$" + produto.getPreco() + "\n");
                 }
-        
+                
                 vendaTextArea.append("\nTotal: R$" + venda.getListaProdutos().getPrecoTotal() + "\n");
-        
+                
                 vendaFrame.setSize(400, 300);
                 vendaFrame.setVisible(true);
                 vendaFrame.setLocationRelativeTo(null);
-                notaFiscal.imprimeNotaFiscal();
-                notaFiscal.escreverNotaFiscalEmArquivo();
             } else {
                 JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
             }
         }
-        
-    }}
+    }
+    
+}
