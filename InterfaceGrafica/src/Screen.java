@@ -201,26 +201,28 @@ public class Screen extends JFrame{
 
     //remover produto do carrinho pelo nome e quantidade
     private void removerProdutoDoCarrinho() {
-        if (carrinho != null) {
-            
-            String nomeProduto = textFieldNomeProdutoRemover.getText();
-            int quantidadeRemover = Integer.parseInt(textFieldQuantidadeRemover.getText());
 
-            int resultado = carrinho.removeProdutoPeloNome(nomeProduto, quantidadeRemover);
-
-            if (resultado == 1) {
-                JOptionPane.showMessageDialog(this, "Produto removido do carrinho!");
-            } else if (resultado == 0) {
-                JOptionPane.showMessageDialog(this, "Produto não encontrado no carrinho.");
-            } else if (resultado == -1) {
-                JOptionPane.showMessageDialog(this, "Quantidade a ser removida é maior que a quantidade no carrinho.");
-            }
-        } else {
+        // Verificar se o carrinho está vazio
+        if (carrinho == null || carrinho.getListaProdutos().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
+            return;  // Sai do método se o carrinho estiver vazio
+        }
+
+        String nomeProduto = textFieldNomeProdutoRemover.getText();
+        int quantidadeRemover = Integer.parseInt(textFieldQuantidadeRemover.getText());
+
+        int resultado = carrinho.removeProdutoPeloNome(nomeProduto, quantidadeRemover);
+
+        if (resultado == 1) {
+            JOptionPane.showMessageDialog(this, "Produto removido do carrinho!");
+        } else if (resultado == 0) {
+            JOptionPane.showMessageDialog(this, "Produto não encontrado no carrinho.");
+        } else if (resultado == -1) {
+            JOptionPane.showMessageDialog(this, "Quantidade a ser removida é maior que a quantidade no carrinho.");
         }
         // Limpar o texto dos JTextFields após adicionar o produto ao carrinho
-            textFieldNomeProdutoRemover.setText("");
-            textFieldQuantidadeRemover.setText("");
+        textFieldNomeProdutoRemover.setText("");
+        textFieldQuantidadeRemover.setText("");
     }
 
     private Produto encontrarProdutoNoCatalogo(String nomeProduto) {
@@ -233,6 +235,12 @@ public class Screen extends JFrame{
     }
 
     private void concluirVenda() {
+        // Verificar se o carrinho está vazio
+        if (carrinho == null || carrinho.getListaProdutos().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Carrinho vazio. Adicione produtos antes de concluir a venda.");
+            return;  // Sai do método se o carrinho estiver vazio
+        }
+    
         Object[] options = {Venda.tipoVenda.DINHEIRO, Venda.tipoVenda.CRÉDITO, Venda.tipoVenda.DÉBITO, Venda.tipoVenda.PIX};
         Venda.tipoVenda tipo = (Venda.tipoVenda) JOptionPane.showInputDialog(
             this,
@@ -252,26 +260,22 @@ public class Screen extends JFrame{
             notaFiscal.imprimeNotaFiscal();
             notaFiscal.escreverNotaFiscalEmArquivo();
     
-            if (carrinho != null) {
-                JFrame vendaFrame = new JFrame("Detalhes da Venda");
-                JTextArea vendaTextArea = new JTextArea();
-                JScrollPane scrollPane = new JScrollPane(vendaTextArea);
-                vendaFrame.add(scrollPane);
-                vendaTextArea.append("Detalhes da Venda:\n");
-                vendaTextArea.append("Tipo de Venda: " + venda.getTipo() + "\n");
-                vendaTextArea.append("Produtos:\n");
-                for (Produto produto : carrinho.getListaProdutos()) {
-                    vendaTextArea.append(produto.getNomeProduto() + " - R$" + produto.getPreco() + "\n");
-                }
-                
-                vendaTextArea.append("\nTotal: R$" + venda.getListaProdutos().getPrecoTotal() + "\n");
-                
-                vendaFrame.setSize(400, 300);
-                vendaFrame.setVisible(true);
-                vendaFrame.setLocationRelativeTo(null);
-            } else {
-                JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
+            JFrame vendaFrame = new JFrame("Detalhes da Venda");
+            JTextArea vendaTextArea = new JTextArea();
+            JScrollPane scrollPane = new JScrollPane(vendaTextArea);
+            vendaFrame.add(scrollPane);
+            vendaTextArea.append("Detalhes da Venda:\n");
+            vendaTextArea.append("Tipo de Venda: " + venda.getTipo() + "\n");
+            vendaTextArea.append("Produtos:\n");
+            for (Produto produto : carrinho.getListaProdutos()) {
+                vendaTextArea.append(produto.getNomeProduto() + " - R$" + produto.getPreco() + "\n");
             }
+            
+            vendaTextArea.append("\nTotal: R$" + venda.getListaProdutos().getPrecoTotal() + "\n");
+            
+            vendaFrame.setSize(400, 300);
+            vendaFrame.setVisible(true);
+            vendaFrame.setLocationRelativeTo(null);
         }
     }
     
