@@ -221,17 +221,48 @@ public class Screen extends JFrame{
         return null;
     }
 
-    private void concluirVenda() {
-        if (carrinho != null) {
-            Venda.tipoVenda tipo = Venda.tipoVenda.DINHEIRO; 
-            Venda venda = new Venda(carrinho, tipo);
+        private void concluirVenda() {
+            Object[] options = {Venda.tipoVenda.DINHEIRO, Venda.tipoVenda.CRÉDITO, Venda.tipoVenda.DÉBITO, Venda.tipoVenda.PIX};
+            Venda.tipoVenda tipo = (Venda.tipoVenda) JOptionPane.showInputDialog(
+                this,
+                "Selecione o tipo de venda:",
+                "Tipo de Venda",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]
+            );
 
-            NotaFiscal notaFiscal = new NotaFiscal(venda);
-            notaFiscal.imprimeNotaFiscal();
-            notaFiscal.escreverNotaFiscalEmArquivo();
-        } else {
-            JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
+            if (tipo != null) {
+                Venda venda = new Venda(carrinho, tipo);
+            
+                NotaFiscal notaFiscal = new NotaFiscal(venda);
+            if (carrinho != null) {
+                // Remove the duplicate declaration of "venda"
+                // Venda venda = new Venda(carrinho, Venda.tipoVenda.DINHEIRO);
+
+                NotaFiscal notafiscal = new NotaFiscal(venda);
+                JFrame vendaFrame = new JFrame("Detalhes da Venda");
+                JTextArea vendaTextArea = new JTextArea();
+                JScrollPane scrollPane = new JScrollPane(vendaTextArea);
+                vendaFrame.add(scrollPane);
+                vendaTextArea.append("Detalhes da Venda:\n");
+                vendaTextArea.append("Tipo de Venda: " + venda.getTipo() + "\n");
+                vendaTextArea.append("Produtos:\n");
+                for (Produto produto : carrinho.getListaProdutos()) {
+                    vendaTextArea.append(produto.getNomeProduto() + " - R$" + produto.getPreco() + "\n");
+                }
+        
+                vendaTextArea.append("\nTotal: R$" + venda.getListaProdutos().getPrecoTotal() + "\n");
+        
+                vendaFrame.setSize(400, 300);
+                vendaFrame.setVisible(true);
+                vendaFrame.setLocationRelativeTo(null);
+                notaFiscal.imprimeNotaFiscal();
+                notaFiscal.escreverNotaFiscalEmArquivo();
+            } else {
+                JOptionPane.showMessageDialog(this, "Carrinho não inicializado!");
+            }
         }
-    }
-    
-}
+        
+    }}
